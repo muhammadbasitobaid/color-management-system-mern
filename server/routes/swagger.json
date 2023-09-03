@@ -8,6 +8,15 @@
     "produces": [
         "application/json"
     ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
     "paths": {
         "/login": {
             "post": {
@@ -97,14 +106,26 @@
                 }
             }
         },
-        "/bar": {
+        "/products/": {
             "get": {
-                "x-swagger-router-controller": "bar",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-swagger-router-controller": "products",
                 "operationId": "impossible",
                 "tags": [
-                    "/test"
+                    "/products"
                 ],
-                "description": "",
+                "description": "This endpoint is used to get all the products",
+                "headers": [
+                    {
+                        "name": "",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
                 "parameters": [],
                 "responses": {}
             }
