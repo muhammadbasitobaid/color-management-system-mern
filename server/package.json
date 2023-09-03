@@ -40,6 +40,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "mongoose": "^5.10.11",
+    "swagger-ui-express": "^5.0.0",
     "winston": "^3.3.3"
   }
 }
