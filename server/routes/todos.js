@@ -2,6 +2,7 @@ const express = require('express');
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const authentication = require('../middlewares/authentication');
+const authorization = require('../middlewares/authorization');
 const { validateTodo, Todo } = require('../models/todo');
 
 const router = express.Router();
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
   return res.send(todos);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authorization.grantAccess("createAny", "product"), async (req, res) => {
   const { value, error } = validateTodo(req.body);
 
   if (error) {

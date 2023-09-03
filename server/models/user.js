@@ -24,6 +24,11 @@ const userSchema = mongoose.Schema({
     min: MIN_EMAIL_LENGTH,
     max: MAX_EMAIL_LENGTH,
   },
+  role: {
+    type: String,
+    default: "user",
+    enum: ["user", "admin"]
+  },
   password: {
     type: String,
     required: true,
@@ -38,6 +43,7 @@ userSchema.methods.generateToken = function generateToken() {
       id: this.id,
       name: this.name,
       email: this.email,
+      role: this.role
     },
     process.env.JWT_KEY,
   );
@@ -53,6 +59,7 @@ function validateUser(data) {
       .email()
       .min(MIN_EMAIL_LENGTH)
       .max(MAX_EMAIL_LENGTH),
+    role: Joi.string().valid('user', 'admin'),
     password: Joi.string()
       .required()
       .min(MIN_PASSWORD_LENGTH)

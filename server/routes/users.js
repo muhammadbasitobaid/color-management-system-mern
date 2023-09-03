@@ -7,7 +7,7 @@ const { User, validateUser } = require('../models/user');
 
 function generatePayload(user) {
   return {
-    ..._.pick(user, ['id', 'name', 'email']),
+    ..._.pick(user, ['id', 'name', 'email', 'role']),
     token: user.generateToken(),
   };
 }
@@ -21,6 +21,8 @@ router.post('/signup', async (request, response) => {
     return response.status(400).send({ message: error.message });
   }
 
+
+
   const existingUser = await User.findOne({ email: value.email });
 
   if (existingUser) {
@@ -30,6 +32,7 @@ router.post('/signup', async (request, response) => {
   const newUser = new User();
   newUser.name = value.name;
   newUser.email = value.email;
+  newUser.role = value.role ? value.role : "user";
   newUser.password = await bcrypt.hash(value.password, 12);
   await newUser.save();
 
@@ -64,5 +67,12 @@ router.post('/login', async (request, response) => {
 
   return response.send(generatePayload(user));
 });
+
+router.get('/users', async (request, response) => {
+  const allUser = await User.find({});
+
+  return response.send(allUser)
+
+})
 
 module.exports = router;

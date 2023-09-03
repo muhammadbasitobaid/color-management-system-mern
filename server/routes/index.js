@@ -5,6 +5,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 const users = require('./users');
 const todos = require('./todos');
+const products = require('./products');
 const error = require('../middlewares/error');
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router.use(express.json());
 
 router.use('/api/v1', users);
 router.use('/api/v1/todos', todos);
+router.use('/api/v1/products', products);
 
 if (process.env.NODE_ENV === 'production') {
   router.use(express.static(path.resolve(__dirname, '../public')));
