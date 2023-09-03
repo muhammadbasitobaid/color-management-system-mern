@@ -1,0 +1,120 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Color Management System, BE Rest Api",
+        "description": "This is a documentation for CMS MERN stack app's REST API covering roles, products, etc.",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "x-swagger-router-controller": "login",
+                "operationId": "index",
+                "tags": [
+                    "/api/v1"
+                ],
+                "description": "This endpoint is for logging in as registered user",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "id": {
+                        "description": "id of the user"
+                    },
+                    "name": {
+                        "description": "username of the user"
+                    },
+                    "email": {
+                        "description": "email address of the user"
+                    },
+                    "role": {
+                        "description": "role of the user it can be either 'user' or 'admin'"
+                    },
+                    "token": {
+                        "description": "jwt access_token"
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "x-swagger-router-controller": "signup",
+                "operationId": "index",
+                "tags": [
+                    "/api/v1"
+                ],
+                "description": "This endpoint is for creating a new user",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "role",
+                        "type": "string",
+                        "default": "user"
+                    },
+                    {
+                        "name": "email",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "id": {
+                        "description": "id of the user"
+                    },
+                    "name": {
+                        "description": "username of the user"
+                    },
+                    "email": {
+                        "description": "email address of the user"
+                    },
+                    "role": {
+                        "description": "role of the user it can be either 'user' or 'admin'"
+                    },
+                    "token": {
+                        "description": "jwt access_token"
+                    }
+                }
+            }
+        },
+        "/bar": {
+            "get": {
+                "x-swagger-router-controller": "bar",
+                "operationId": "impossible",
+                "tags": [
+                    "/test"
+                ],
+                "description": "",
+                "parameters": [],
+                "responses": {}
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    }
+}

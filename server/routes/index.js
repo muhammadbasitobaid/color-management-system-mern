@@ -7,6 +7,8 @@ const users = require('./users');
 const todos = require('./todos');
 const products = require('./products');
 const error = require('../middlewares/error');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const router = express.Router();
 
@@ -21,6 +23,10 @@ router.use(express.json());
 router.use('/api/v1', users);
 router.use('/api/v1/todos', todos);
 router.use('/api/v1/products', products);
+
+
+router.use('/api-docs', swaggerUi.serve);
+router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 if (process.env.NODE_ENV === 'production') {
   router.use(express.static(path.resolve(__dirname, '../public')));
