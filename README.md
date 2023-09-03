@@ -6,7 +6,9 @@
 
 * Duplicate the file '.env.example' and change its name to '.env' 
 * Update the Environment Variables in '.env' as needed
-* Run 'yarn dev' to start the API using [nodemon](https://nodemon.io/).  
+* Run 'yarn dev' to start the API using [nodemon](https://nodemon.io/).
+----------------
+* **Note:** To view the api documentation view this published [collection](https://documenter.getpostman.com/view/24503310/2s9Y5eLySg)
 
 ## How to use - Client
 
