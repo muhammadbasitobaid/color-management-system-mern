@@ -4,7 +4,6 @@ const cors = require('cors');
 const compression = require('compression');
 const helmet = require('helmet');
 const users = require('./users');
-const todos = require('./todos');
 const products = require('./products');
 const error = require('../middlewares/error');
 const swaggerUi = require('swagger-ui-express');
@@ -21,7 +20,6 @@ router.use(helmet({ contentSecurityPolicy: false }));
 router.use(express.json());
 
 router.use('/api/v1', users);
-router.use('/api/v1/todos', todos);
 router.use('/api/v1/products', products);
 
 
